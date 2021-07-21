@@ -313,9 +313,15 @@ private:
           std::string openFileStr;
           raw_string_ostream s(openFileStr);
           std::string fileName = Unicode::UTF16ToUTF8StringOrThrow(lpFileName);
+
+#if 0
           s << "Opening file [" << fileName << "], stack top [" << (index-1)
             << "]\n";
           s.flush();
+#endif
+          s << "Note: including file: " << fileName << "\n";
+          s.flush();
+
           ULONG cbWritten;
           IFT(m_pStdErrStream->Write(openFileStr.c_str(), openFileStr.size(),
                                  &cbWritten));
